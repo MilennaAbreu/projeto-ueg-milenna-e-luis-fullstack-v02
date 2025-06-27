@@ -14,6 +14,7 @@ public class MovieCreateDTO {
     private String genre;
     private Boolean available;
     private String language;
+    private Boolean watched;
 
     // Getters e Setters
 
@@ -63,5 +64,13 @@ public class MovieCreateDTO {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public Boolean getWatched() {
+        return watched;
+    }
+
+    public void setWatched(Boolean watched) {
+        this.watched = watched;
     }
 }

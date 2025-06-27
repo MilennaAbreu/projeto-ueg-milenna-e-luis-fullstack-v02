@@ -3,6 +3,7 @@ import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle} fr
 import {MatButton} from '@angular/material/button';
 import {FilmsService} from '../shared/films.service';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
+import {MatCheckbox} from '@angular/material/checkbox';
 import {Film} from '../shared/film';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {FormsModule} from '@angular/forms';
@@ -21,7 +22,8 @@ import {FormsModule} from '@angular/forms';
     RouterLink,
     MatLabel,
     MatInput,
-    FormsModule
+    FormsModule,
+    MatCheckbox
   ],
   templateUrl: './film-form.component.html',
   styleUrl: './film-form.component.scss'
@@ -29,23 +31,29 @@ import {FormsModule} from '@angular/forms';
 export class FilmFormComponent {
 
   film!: Film;
-  filmValue!: Film;
 
   constructor(private filmService: FilmsService,
               private router: Router,
               private activatedRoute: ActivatedRoute,) {
-    this.initFilm()
-    this.editFilm();
+    this.initFilm();
+    this.loadFilm();
   }
 
   initFilm(){
-    this.film = {id: 0, name: '', genre: '', movieTime:'', watched: false}
-    this.filmValue = {id: 0, name: '', genre: '', movieTime:'', watched: false}
+    this.film = {
+      title: '',
+      director: '',
+      releaseDate: '',
+      genre: '',
+      available: true,
+      language: '',
+      watched: false
+    };
   }
 
 
   validate(filmValue: Film) {
-    if (!filmValue.name) {
+    if (!filmValue.title) {
       alert('E impossivel que um filme nao possua um nome')
       return false;
     }
@@ -54,49 +62,26 @@ export class FilmFormComponent {
 
 
   saveFilm() {
-    let saved = this.validate(this.filmValue);
-    if(!saved){return;}
+    if (!this.validate(this.film)) { return; }
 
-    let isEdit = this.film.id
-    if (isEdit) {
-      saved = this.updateFilm(this.filmValue);
-
-    }else{
-      saved = this.addFilm(this.filmValue);
+    if (this.film.id) {
+      this.filmService.updateFilm(this.film).subscribe(() => this.navigateToList());
+    } else {
+      this.filmService.addFilm(this.film).subscribe(() => {
+        this.initFilm();
+        this.navigateToList();
+      });
     }
-
-    if(saved){
-      this.navigateToList()
-    }
-
-  }
-
-   updateFilm(filmToUpdate: Film): boolean {
-      this.filmService.updateFilm(filmToUpdate)
-      return true;
-  }
-
-  addFilm(filmToAdd: Film): boolean {
-    this.filmService.addFilm(filmToAdd);
-    this.initFilm();
-    return true;
   }
 
   refreshField(nomeFilme: string) {
-    this.filmValue.name = nomeFilme
+    this.film.title = nomeFilme;
   }
 
-  private editFilm() {
+  private loadFilm() {
     const edit = this.activatedRoute.snapshot.paramMap.get('id')
     if (edit) {
-      let film = this.filmService.getFilm(parseInt(edit ?? 0))
-      if (film) {
-        this.film = film;
-        this.filmValue.id = film.id ?? 0;
-        this.filmValue.name = film.name;
-        this.filmValue.genre = film.genre;
-        this.filmValue.movieTime = film.movieTime;
-      }
+      this.filmService.getFilm(parseInt(edit)).subscribe(film => this.film = film);
     }
 
   }
