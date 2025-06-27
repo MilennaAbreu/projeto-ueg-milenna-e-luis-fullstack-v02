@@ -1,7 +1,10 @@
 export class Film {
-  id!: number;
-  name!: string;
+  id?: number;
+  title!: string;
+  director!: string;
+  releaseDate!: string;
   genre!: string;
-  movieTime!: string;
+  available!: boolean;
+  language!: string;
   watched!: boolean;
 }

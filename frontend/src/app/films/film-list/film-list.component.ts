@@ -51,14 +51,15 @@ export class FilmListComponent {
   dataSource = new MatTableDataSource<Film>();
 
   constructor(private filmService: FilmsService) {
-    this.updateTable()
+    this.updateTable();
   }
 
-  displayedColumns: string[] = ['descricao','genero','duracao','status','check','edit','delete']
+  displayedColumns: string[] = ['descricao','genero','idioma','status','check','edit','delete']
 
 
   toggleWatched(film: Film): void {
     film.watched = !film.watched;
+    this.filmService.updateFilm(film).subscribe(() => this.updateTable());
   }
 
   getStatusLabel(film: Film): string {
@@ -66,12 +67,11 @@ export class FilmListComponent {
   }
 
   delete(film: Film) {
-    this.filmService.removeFilm(film.id ?? 0)
-    this.updateTable();
+    this.filmService.removeFilm(film.id ?? 0).subscribe(() => this.updateTable());
   }
 
   updateTable() {
-    this.dataSource.data = this.filmService.getFilms();
+    this.filmService.getFilms().subscribe(films => this.dataSource.data = films);
   }
 }
 

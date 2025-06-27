@@ -26,6 +26,7 @@ public class MovieServiceImplementation implements MovieService {
         movie.setGenre(movieCreateDTO.getGenre());
         movie.setAvailable(movieCreateDTO.getAvailable());
         movie.setLanguage(movieCreateDTO.getLanguage());
+        movie.setWatched(movieCreateDTO.getWatched());
         return movieRepository.save(movie);
     }
 
@@ -50,6 +51,7 @@ public class MovieServiceImplementation implements MovieService {
         movie.setGenre(movieUpdateDTO.getGenre());
         movie.setAvailable(movieUpdateDTO.getAvailable());
         movie.setLanguage(movieUpdateDTO.getLanguage());
+        movie.setWatched(movieUpdateDTO.getWatched());
 
         return movieRepository.save(movie);
     }

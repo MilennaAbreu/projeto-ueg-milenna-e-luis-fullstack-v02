@@ -3,11 +3,11 @@
   <mat-card-title style="display: flex; justify-content: center">Lista de Filmes</mat-card-title>
   <mat-table [dataSource]="dataSource" class="mat-elevation-z2">
 
-    <!-- Nome  -->
+    <!-- Título  -->
     <ng-container matColumnDef="descricao">
       <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
       <mat-cell *matCellDef="let film">
-        {{ film.name }}
+        {{ film.title }}
       </mat-cell>
     </ng-container>
 
@@ -19,10 +19,10 @@
       </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="duracao">
-      <mat-header-cell *matHeaderCellDef> Duração </mat-header-cell>
+    <ng-container matColumnDef="idioma">
+      <mat-header-cell *matHeaderCellDef> Idioma </mat-header-cell>
       <mat-cell *matCellDef="let film">
-        {{ film.movieTime}}
+        {{ film.language }}
       </mat-cell>
     </ng-container>
 

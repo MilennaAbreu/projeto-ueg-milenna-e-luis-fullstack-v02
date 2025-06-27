@@ -9,11 +9,21 @@
     <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between;">
 
       <mat-form-field appearance="fill" style="flex: 1 1 100%; min-width: 250px;">
-        <mat-label>Nome do filme</mat-label>
+        <mat-label>Título do filme</mat-label>
         <input matInput
-               [(ngModel)]="film.name"
+               [(ngModel)]="film.title"
                (ngModelChange)="refreshField($event)"
                placeholder="Filme">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" style="flex: 1 1 45%; min-width: 200px;">
+        <mat-label>Diretor</mat-label>
+        <input matInput [(ngModel)]="film.director" placeholder="Diretor do filme">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" style="flex: 1 1 45%; min-width: 200px;">
+        <mat-label>Data de lançamento</mat-label>
+        <input matInput type="date" [(ngModel)]="film.releaseDate">
       </mat-form-field>
 
       <mat-form-field appearance="fill" style="flex: 1 1 45%; min-width: 200px;">
@@ -22,9 +32,12 @@
       </mat-form-field>
 
       <mat-form-field appearance="fill" style="flex: 1 1 45%; min-width: 200px;">
-        <mat-label>Duração / Horário do filme</mat-label>
-        <input matInput [(ngModel)]="film.movieTime" placeholder="Ex: 2h 15min ou 20:30">
+        <mat-label>Idioma</mat-label>
+        <input matInput [(ngModel)]="film.language" placeholder="PT-BR">
       </mat-form-field>
+
+      <mat-checkbox [(ngModel)]="film.available">Disponível</mat-checkbox>
+      <mat-checkbox [(ngModel)]="film.watched">Assistido</mat-checkbox>
     </div>
 
     <mat-card-actions>
