@@ -1,0 +1,37 @@
+<mat-card>
+  <mat-card-title>
+    <mat-card-header class="form-title">
+      Cadastro de novo filme
+    </mat-card-header>
+  </mat-card-title>
+<br>
+  <mat-card-content>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between;">
+
+      <mat-form-field appearance="fill" style="flex: 1 1 100%; min-width: 250px;">
+        <mat-label>Nome do filme</mat-label>
+        <input matInput
+               [(ngModel)]="film.name"
+               (ngModelChange)="refreshField($event)"
+               placeholder="Filme">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" style="flex: 1 1 45%; min-width: 200px;">
+        <mat-label>Gênero do filme</mat-label>
+        <input matInput [(ngModel)]="film.genre" placeholder="Ação, Comédia, Drama...">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" style="flex: 1 1 45%; min-width: 200px;">
+        <mat-label>Duração / Horário do filme</mat-label>
+        <input matInput [(ngModel)]="film.movieTime" placeholder="Ex: 2h 15min ou 20:30">
+      </mat-form-field>
+    </div>
+
+    <mat-card-actions>
+      <div style="display: flex; justify-content: flex-end; gap: 12px; width: 100%; margin-top: 16px;">
+        <button mat-raised-button color="primary" (click)="saveFilm()">Salvar</button>
+        <button mat-raised-button color="warn" (click)="navigateToList()">Cancelar</button>
+      </div>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>

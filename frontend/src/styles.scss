@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+.mat-toolbar {
+  background-color: #111 !important; /* tom levemente diferente de preto */
+  color: white !important;
+}
+
+.main-content {
+  min-height: calc(100vh - 128px); // considerando altura do header e footer somados
+  padding: 16px;
+  background-color: #000;
+  color: white;
+}
+
+html, body { height: 100%; }
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #fff;
+}

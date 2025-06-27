@@ -1,0 +1,32 @@
+mat-card {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+mat-card-title {
+  font-size: 20px;
+  margin-bottom: 16px;
+  font-weight: bold;
+  color: black;
+}
+
+mat-table {
+  width: 100%;
+}
+
+mat-header-cell, mat-cell {
+  padding: 12px 8px;
+  color: black;
+}
+
+mat-checkbox {
+  margin-left: 8px;
+}
+
+.fab-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+}

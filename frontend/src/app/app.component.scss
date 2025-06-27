@@ -1,0 +1,41 @@
+.logo {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: rosybrown;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.main-content {
+  padding: 16px;
+  min-height: calc(100vh - 128px); // Ajustar altura considerando o header e footer
+  box-sizing: border-box;
+  background-color: black ;
+}
+
+button{
+  cursor: pointer;
+  background-color: transparent;
+  color: white;
+}
+
+.mat-elevation-z2{
+  font-size: 0.9rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: 48px;
+
+  img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    margin: 0 0.4rem 0 0.3rem;
+  }
+}
+

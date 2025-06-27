@@ -1,0 +1,79 @@
+
+<mat-card>
+  <mat-card-title style="display: flex; justify-content: center">Lista de Filmes</mat-card-title>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+
+    <!-- Nome  -->
+    <ng-container matColumnDef="descricao">
+      <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+      <mat-cell *matCellDef="let film">
+        {{ film.name }}
+      </mat-cell>
+    </ng-container>
+
+     <!-- Genero -->
+    <ng-container matColumnDef="genero">
+      <mat-header-cell *matHeaderCellDef> Gênero </mat-header-cell>
+      <mat-cell *matCellDef="let film">
+        {{ film.genre }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="duracao">
+      <mat-header-cell *matHeaderCellDef> Duração </mat-header-cell>
+      <mat-cell *matCellDef="let film">
+        {{ film.movieTime}}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Status -->
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let film">
+        {{ getStatusLabel(film) }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Ação: checkbox -->
+    <ng-container matColumnDef="check">
+      <mat-header-cell *matHeaderCellDef> Marcar </mat-header-cell>
+      <mat-cell *matCellDef="let film">
+        <mat-checkbox [checked]="film.watched" (change)="toggleWatched(film)">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <!--Edição-->
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef> Editar </mat-header-cell>
+      <mat-cell *matCellDef="let film">
+        <button mat-icon-button [routerLink]="['/form',film.id]">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> Apagar </mat-header-cell>
+      <mat-cell *matCellDef="let film">
+        <button mat-icon-button (click)="delete(film)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+
+    <!-- Cabeçalho e linhas -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+</mat-card>
+
+<button mat-fab color="primary"
+        class="fab-button"
+        matTooltip="Adicionar filme"
+        [routerLink]="['/form']"
+        >
+  <mat-icon>add</mat-icon>
+</button>
